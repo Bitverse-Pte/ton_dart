@@ -5,11 +5,11 @@ void main() async {
   final extensionWallet = TestWallet<WalletV5R1>(version: WalletVersion.v5R1);
 
   final TestWallet<WalletV5R1> wallet =
-      TestWallet(version: WalletVersion.v5R1, index: 96);
+  TestWallet(version: WalletVersion.v5R1, index: 96);
 
-  await extensionWallet.wallet.sendTransfer(
+  String result = await extensionWallet.wallet.sendTransfer(
       params:
-          VersionedV5TransferParams.external(signer: extensionWallet.signer),
+      VersionedV5TransferParams.external(signer: extensionWallet.signer),
       messages: [
         TonHelper.internal(
             destination: wallet.address,
@@ -23,4 +23,6 @@ void main() async {
             ])),
       ],
       rpc: extensionWallet.rpc);
+
+  print(result);
 }
